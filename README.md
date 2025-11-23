@@ -68,7 +68,6 @@ Responses:
 - `409 Conflict` → duplicate code  
 - `400 Bad Request` → invalid URL/code  
 
----
 
 ### **3. List all links**
 
