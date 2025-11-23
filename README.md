@@ -86,13 +86,9 @@ Returns:
   }
 ]
 
----
-
 ### **4. Get Stats for a short code**
 
 GET /code/:code
-
----
 
 ### **5. Delete a short link**
 
@@ -106,23 +102,15 @@ DELETE /api/links/:code
 git clone https://github.com/YOUR_USERNAME/tinylink.git
 cd tinylink
 
----
-
 ### **2️⃣ Install dependencies**
 npm install
-
----
 
 ### **3️⃣ Create .env**
 DATABASE_URL=postgresql://<your-neon-db-url>
 
----
-
 ### **4️⃣ Run Prisma setup**
 npx prisma generate
 npx prisma migrate dev --name init
-
----
 
 ### **5️⃣ Start development**
 npm run dev
