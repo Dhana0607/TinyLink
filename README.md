@@ -1,36 +1,118 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🔗 TinyLink — URL Shortener (Take-Home Assignment)
 
-## Getting Started
+TinyLink is a simple, fast, and production-ready **URL shortener** built using **Next.js App Router**, **Prisma**, and **PostgreSQL (Neon)**.  
+This project implements full CRUD for links, automatic + custom code generation, redirects, click tracking, and a clean dashboard UI built with **plain CSS** (no Tailwind required).
 
-First, run the development server:
+📄 **Assignment Spec:**  
+`/mnt/data/Take-Home Assignment_ TinyLink (1) (2).pdf`
 
-```bash
+---
+
+## 🚀 Features
+
+- Shorten any long URL  
+- Optional **custom short code**  
+- Auto-generate randomized short codes (6–8 characters)  
+- Track:
+  - Total clicks  
+  - Last clicked timestamp  
+  - Created date  
+- Redirect handler: `/abc123` → target URL  
+- Duplicate code protection  
+- REST API endpoints  
+- Healthcheck endpoint  
+- Clean dashboard UI with:
+  - Create form  
+  - Search  
+  - Copy short URL  
+  - Delete link  
+  - View stats
+
+---
+
+## 🧰 Tech Stack
+
+**Frontend & API**
+- Next.js 16 (App Router)
+- React 19
+- Plain CSS 
+- TypeScript
+
+**Database**
+- PostgreSQL 
+- Prisma ORM
+
+**Deployment**
+- Vercel (recommended)
+
+---
+
+## ⚙️ API Endpoints
+
+### **1. Health Check**
+
+GET /healthz → 200 OK
+
+### **2. Create a short link**
+
+POST /api/links
+Content-Type: application/json
+{
+"url": "https://example.com
+",
+"code": "abc123" // optional
+}
+
+Responses:
+- `201 Created` → link created  
+- `409 Conflict` → duplicate code  
+- `400 Bad Request` → invalid URL/code  
+
+
+### **3. List all links**
+
+GET /api/links
+
+Returns:
+[
+  {
+    "code": "abc123",
+    "url": "https://example.com",
+    "totalClicks": 3,
+    "lastClicked": "2025-11-22T15:10:00.000Z",
+    "createdAt": "2025-11-22T14:55:00.000Z"
+  }
+]
+
+### **4. Get Stats for a short code**
+
+GET /code/:code
+
+### **5. Delete a short link**
+
+DELETE /api/links/:code
+
+---
+
+## 🛠️ Local Setup
+
+### **1️⃣ Clone repo**
+git clone https://github.com/YOUR_USERNAME/tinylink.git
+cd tinylink
+
+### **2️⃣ Install dependencies**
+npm install
+
+### **3️⃣ Create .env**
+DATABASE_URL=postgresql://<your-neon-db-url>
+
+### **4️⃣ Run Prisma setup**
+npx prisma generate
+npx prisma migrate dev --name init
+
+### **5️⃣ Start development**
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+App runs at:
+http://localhost:3000
+---
