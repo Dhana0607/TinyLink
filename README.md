@@ -74,7 +74,6 @@ Responses:
 GET /api/links
 
 Returns:
-```json
 [
   {
     "code": "abc123",
